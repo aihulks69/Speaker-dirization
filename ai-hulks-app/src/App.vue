@@ -95,7 +95,7 @@
     </div>
     <div>
       <!-- App Navbar -->
-      <Navbar/>
+      <Navbar :theme="appTheme"/>
       <!-- App Container -->
       <transition name="fade" mode="out-in">
         <router-view :theme="appTheme" />
@@ -104,9 +104,14 @@
           visibleoffset="500"
           right="40px"
           bottom="40px"
-          class="shadow-lg"
+          class=""
       >
-        <i data-feather="arrow-up"></i>
+        <svg
+            class="h-16 w-16 text-indigo-500 hover:text-indigo-800"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 11l3-3m0 0l3 3m-3-3v8m0-13a9 9 0 110 18 9 9 0 010-18z" />
+        </svg>
       </back-to-top>
       <!-- App Footer -->
       <Footer/>
@@ -117,6 +122,7 @@
 <script>
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+
 export default {
   components: {Footer, Navbar},
   data: () => {
@@ -125,52 +131,11 @@ export default {
     };
   },
   mounted() {
-    //feather.replace();
   },
   updated() {
-    //feather.replace();
   },
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
-.vue-back-to-top {
-  /*@apply p-2 sm:p-4 bg-indigo-500 hover:bg-indigo-600 text-white;*/
-  border-radius: 50%;
-  font-size: 22px;
-  line-height: 22px;
-}
-.fade-enter-active {
-  animation: coming 0.4s;
-  animation-delay: 0.2s;
-  opacity: 0;
-}
-.fade-leave-active {
-  animation: going 0.4s;
-}
-@keyframes going {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-10px);
-    opacity: 0;
-  }
-}
-@keyframes coming {
-  from {
-    transform: translateX(-10px);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0px);
-    opacity: 1;
-  }
-}
 </style>

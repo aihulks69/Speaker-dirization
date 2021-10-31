@@ -1,11 +1,15 @@
 <template>
-  <nav id="nav" class="sm:container sm:mx-auto relative z-10">
+  <nav
+      id="nav"
+      class="sm:container sm:mx-auto relative z-10"
+  >
     <!-- Header start -->
     <div
         class="z-10 max-w-screen-lg xl:max-w-screen-xl block sm:flex sm:justify-between sm:items-center my-6"
     >
       <!-- Header menu links and small screen humberger menu start -->
-      <div class="flex justify-between items-center px-4 sm:px-0">
+      <div
+          class="flex justify-between items-center px-4 sm:px-0">
         <!-- Header logos start -->
         <div>
           <router-link
@@ -13,28 +17,34 @@
               to="/"
           >
 
-            <svg class="w-9 h-9"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                 :fill="theme === 'dark' ? '#f6f7f8' : '#2b384a'"><g><rect fill="none" height="24" width="24"/><path d="M15.5,11.5c0,2-2.5,3.5-2.5,5h-2c0-1.5-2.5-3-2.5-5C8.5,9.57,10.07,8,12,8S15.5,9.57,15.5,11.5z M13,17.5h-2V19h2V17.5z M22,12c0-2.76-1.12-5.26-2.93-7.07l-1.06,1.06C19.55,7.53,20.5,9.66,20.5,12c0,2.34-0.95,4.47-2.49,6.01l1.06,1.06 C20.88,17.26,22,14.76,22,12z M3.5,12c0-2.34,0.95-4.47,2.49-6.01L4.93,4.93C3.12,6.74,2,9.24,2,12c0,2.76,1.12,5.26,2.93,7.07 l1.06-1.06C4.45,16.47,3.5,14.34,3.5,12z M17.5,12c0,1.52-0.62,2.89-1.61,3.89l1.06,1.06C18.22,15.68,19,13.93,19,12 c0-1.93-0.78-3.68-2.05-4.95l-1.06,1.06C16.88,9.11,17.5,10.48,17.5,12z M7.05,16.95l1.06-1.06c-1-1-1.61-2.37-1.61-3.89 c0-1.52,0.62-2.89,1.61-3.89L7.05,7.05C5.78,8.32,5,10.07,5,12C5,13.93,5.78,15.68,7.05,16.95z"/></g>
+            <svg
+                class="w-9 h-9"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                 :fill="theme === 'dark' ? '#f6f7f8' : '#2b384a'"
+            >
+              <g><rect fill="none" height="24" width="24"/><path d="M15.5,11.5c0,2-2.5,3.5-2.5,5h-2c0-1.5-2.5-3-2.5-5C8.5,9.57,10.07,8,12,8S15.5,9.57,15.5,11.5z M13,17.5h-2V19h2V17.5z M22,12c0-2.76-1.12-5.26-2.93-7.07l-1.06,1.06C19.55,7.53,20.5,9.66,20.5,12c0,2.34-0.95,4.47-2.49,6.01l1.06,1.06 C20.88,17.26,22,14.76,22,12z M3.5,12c0-2.34,0.95-4.47,2.49-6.01L4.93,4.93C3.12,6.74,2,9.24,2,12c0,2.76,1.12,5.26,2.93,7.07 l1.06-1.06C4.45,16.47,3.5,14.34,3.5,12z M17.5,12c0,1.52-0.62,2.89-1.61,3.89l1.06,1.06C18.22,15.68,19,13.93,19,12 c0-1.93-0.78-3.68-2.05-4.95l-1.06,1.06C16.88,9.11,17.5,10.48,17.5,12z M7.05,16.95l1.06-1.06c-1-1-1.61-2.37-1.61-3.89 c0-1.52,0.62-2.89,1.61-3.89L7.05,7.05C5.78,8.32,5,10.07,5,12C5,13.93,5.78,15.68,7.05,16.95z"/></g>
             </svg>
-            <span class="font-bold text-xl">Hulks AI</span>
+            <span
+                class="font-bold text-xl"
+            >
+              Hulks AI
+            </span>
           </router-link>
         </div>
         <!-- Header logos end -->
 
-        <!-- Theme switcher small screen start -->
-        <theme-switcher
-            :theme="theme"
-            class="block sm:hidden bg-ternary-light dark:bg-ternary-dark hover:bg-hover-light dark:hover:bg-hover-dark hover:shadow-sm px-2.5 py-2 rounded-lg ml-10"
-            @themeChanged="updateTheme"
-        />
-        <!-- Theme switcher small screen end -->
-
         <!-- Small screen humberger menu start -->
-        <div class="sm:hidden">
+
+        <div class="sm:hidden flex">
+          <!-- Theme switcher small screen start -->
+          <theme-switcher
+              :theme="theme"
+              class="block mr-4 bg-primary-light dark:bg-ternary-light p-2 shadow-sm rounded-full cursor-pointer"
+          />
+          <!-- Theme switcher small screen end -->
           <button
               aria-label="Humberger Menu"
               class="focus:outline-none"
-              type="buttom"
+              type="button"
               @click="isOpen = !isOpen"
           >
             <svg
@@ -87,7 +97,7 @@
 
       <!-- Header right section buttons start -->
       <div
-          class="hidden sm:flex justify-between items-center flex-col md:flex-row"
+          class="hidden sm:flex justify-between items-center md:flex-row"
       >
         <!-- Github button -->
         <a
@@ -111,7 +121,6 @@
         <theme-switcher
             :theme="theme"
             class="ml-3 bg-primary-light dark:bg-ternary-light p-2 shadow-sm rounded-full cursor-pointer"
-            @themeChanged="updateTheme"
         />
         <!-- Theme switcher -->
       </div>
@@ -129,22 +138,20 @@ export default {
   components: {
     ThemeSwitcher,
   },
+  props: {
+    theme: {
+      type: String,
+      required: true,
+    },
+  },
   data() {
     return {
       isOpen: false,
-      theme: '',
     };
   },
-  created() {
-    this.theme = localStorage.getItem('theme') || 'light';
-  },
   mounted() {
-    this.theme = localStorage.getItem('theme') || 'light';
   },
   methods: {
-    updateTheme(theme) {
-      this.theme = theme;
-    },
   },
   updated() {
   },
@@ -153,39 +160,4 @@ export default {
 
 <style scoped>
 
-.bg-gray-800-opacity {
-  background-color: #2d374850;
-}
-
-.fade-up-down-enter-active {
-  transition: all 0.3s ease;
-}
-
-.fade-up-down-leave-active {
-  transition: all 0.3s ease;
-}
-
-.fade-up-down-enter {
-  transform: translateY(10%);
-  opacity: 0;
-}
-
-.fade-up-down-leave-to {
-  transform: translateY(10%);
-  opacity: 0;
-}
-
-.fade-enter-active {
-  -webkit-transition: opacity 2s;
-  transition: opacity 0.3s;
-}
-
-.fade-leave-active {
-  transition: opacity 0.3s;
-}
-
-.fade-enter,
-.fade-leave-to {
-  opacity: 0;
-}
 </style>

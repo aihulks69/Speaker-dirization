@@ -1,16 +1,62 @@
 <template>
-  <div class="p-4 bg-white w-max bg-white dark:bg-opacity-10 m-auto rounded-lg mb-2 bg-opacity-60">
-    <div class="file_upload p-5 relative border-4 border-dotted border-gray-300 rounded-lg" style="width:450px;">
-      <svg class="text-indigo-500 w-24 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
-      <div class="input_field flex flex-col w-max mx-auto text-center">
+  <div
+      class="bg-white w-max bg-white dark:bg-opacity-10 m-auto rounded-lg bg-opacity-60"  @dragover.prevent @drop.prevent>
+    <div
+      class="p-4 space-y-4 relative border-4 border-dotted border-gray-300 rounded-lg"
+      v-if="uploaded && files.length"
+    >
+      <ul
+          v-for="(file, index) in files"
+          :key="index"
+      >
+        <li
+            class="text-green-300 flex space-x-3 items-center"
+        >
+          <span>
+            {{file.name}}
+          </span>
+          <a
+              @click="initFiles"
+              class="cursor-pointer text-red-500 hover:text-red-600"
+          >
+            <svg
+                class="h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div
+        v-else
+        @drop="dragFile"
+        class="p-4 space-y-4 relative border-4 border-dotted border-gray-300 rounded-lg">
+      <svg
+          class="text-indigo-500 md:w-24 w-20 mx-auto"
+          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+      </svg>
+      <div class="flex flex-col w-max mx-auto text-center">
         <label class="text-center">
-          <input @change="upload" class="text-sm cursor-pointer w-36 hidden" type="file">
-          <div class="text-center hover:shadow-lg bg-primary-gradient text-white shadow-md focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-transparent focus:outline-none hover:shadow-m px-3 py-2 rounded-md cursor-pointer">
+          <input
+              @change="upload"
+              class="text-sm cursor-pointer w-36 hidden"
+              type="file">
+          <div
+              class="text-center hover:shadow-lg bg-primary-gradient text-white shadow-md focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-transparent focus:outline-none hover:shadow-m px-3 py-2 rounded-md cursor-pointer"
+          >
             <span>Select</span>
           </div>
         </label>
-        <div class="mt-4 title text-indigo-500 uppercase text-xs dark:text-gray-200">or drop files here</div>
+        <div
+            class="mt-4 title text-indigo-500 uppercase text-xs dark:text-gray-200"
+        >
+          or drop files here
+        </div>
       </div>
+      <div v-if="error" class="text-red-600 text-sm text-center">File not supported</div>
     </div>
   </div>
 </template>
@@ -18,15 +64,50 @@
 <script>
 export default {
   name: "upload-media-input",
-  pros: {
-    fileType: String, //type of file
-    default: "",
-  },
+  data: () => (
+      {
+        files: [],
+        error: false,
+        uploaded: false,
+      }
+      ),
   methods: {
-    upload(event) {
-      console.log(this.fileType, event.target.files);
-      this.$emit('upload-file', '');
+    upload(e) {
+      this.files = e.target.files;
+      if(this.files.length){
+       this.sendEvent();
+      }
     },
+    dragFile(e) {
+      this.files = e.dataTransfer.files;
+      if(this.files.length){
+        this.sendEvent();
+      }
+    },
+    sendEvent() {
+      this.uploaded = false;
+      const singleFile = this.files[0];
+      if (this.checkFileType(singleFile)) {
+        this.error = false;
+        this.$emit('upload-file', singleFile);
+        this.uploaded = true;
+      } else {
+        this.error = true;
+      }
+    },
+    checkFileType(file) {
+      const supportedAudioList = ['mp3', 'wav', 'mpeg']
+      if (file) {
+        const fileType = file['type']
+            .split('/')
+            .pop()
+        return supportedAudioList.includes(fileType);
+      }
+      return false
+    },
+    initFiles() {
+      this.files = [];
+    }
   }
 }
 </script>
