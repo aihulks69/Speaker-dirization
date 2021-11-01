@@ -127,7 +127,7 @@ export default {
   components: {Footer, Navbar},
   data: () => {
     return {
-      appTheme: localStorage.getItem('theme'),
+      appTheme: localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light',
     };
   },
   mounted() {

@@ -76,16 +76,18 @@
         class="py-4 relative mx-auto space-y-4"
     >
       <div
-        class="space-y-4 md:items-center md:justify-between md:flex md:text-left text-center"
+        class="bg-red-5 space-y-4 md:items-center md:justify-between md:flex md:text-left text-center"
       >
         <p
-            class="flex-1 text-2xl text-gray-900 sm:pb-4 md:text-xl dark:text-gray-300"
+            class="flex-1 text-2xl text-gray-900 sm:pb-0 pb-4 md:text-xl dark:text-gray-300"
         >
           Separate different speakers in audio recording.
         </p>
         <upload-media-input
             class="flex-1"
+            :is-processing="processing"
             @upload-file="onUpload"
+            @process-file="onProcess"
         />
       </div>
     </section>
@@ -123,7 +125,7 @@
             <p
                 class="text-lg font-bold text-gray-800 dark:text-ternary-light"
             >
-              John
+              Debasish Dutta
             </p>
             <p
                 class="text-sm text-gray-600 dark:text-gray-400"
@@ -146,7 +148,7 @@
             <p
                 class="text-lg font-bold text-gray-800 dark:text-ternary-light"
             >
-              John
+              Pragya Goyal
             </p>
             <p
                 class="text-sm text-gray-600 dark:text-gray-400">
@@ -168,7 +170,53 @@
             <p
                 class="text-lg font-bold text-gray-800 dark:text-ternary-light"
             >
-              John
+              Ahmed Mansoura
+            </p>
+            <p
+                class="text-sm text-gray-600 dark:text-gray-400"
+            >
+              Developer
+            </p>
+          </div>
+        </div>
+        <div
+            class="flex items-center justify-center space-x-2"
+        >
+          <img
+              alt="avatar"
+              src="../assets/images/default-user.png"
+              class="object-cover w-20 h-20 ml-4 rounded-full shadow"
+          />
+          <div
+              class="relative"
+          >
+            <p
+                class="text-lg font-bold text-gray-800 dark:text-ternary-light"
+            >
+              Tanish Kumar
+            </p>
+            <p
+                class="text-sm text-gray-600 dark:text-gray-400"
+            >
+              Developer
+            </p>
+          </div>
+        </div>
+        <div
+            class="flex items-center justify-center space-x-2"
+        >
+          <img
+              alt="avatar"
+              src="../assets/images/default-user.png"
+              class="object-cover w-20 h-20 ml-4 rounded-full shadow"
+          />
+          <div
+              class="relative"
+          >
+            <p
+                class="text-lg font-bold text-gray-800 dark:text-ternary-light"
+            >
+              Jisha Jose
             </p>
             <p
                 class="text-sm text-gray-600 dark:text-gray-400"
@@ -216,6 +264,7 @@
 <script>
 
 import UploadMediaInput from "../components/UploadMediaInput";
+import endpoint from "../api/endpoint";
 
 export default {
   name: 'Home',
@@ -224,15 +273,31 @@ export default {
   },
   data:() => (
       {
-        uploaded: false
+        uploaded: false,
+        processing: true,
+        errorProcessing: false
       }
   ),
   mounted() {
   },
   methods: {
-    onUpload(event) {
-      console.log(event);
+    onUpload() {
       this.uploaded = true;
+    },
+    onProcess(file) {
+      this.processing = true;
+      console.log('here', file)
+      let formData = new FormData();
+      formData.append("image", file);
+      endpoint.uploadAudio(formData)
+          .then(response => {
+            console.log(response)
+          })
+          .catch(error => {
+            console.log(error);
+            this.errorProcessing = true;
+          })
+          .finally(() => this.processing = false)
     },
   }
 }

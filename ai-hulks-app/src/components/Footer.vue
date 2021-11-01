@@ -13,14 +13,14 @@
         >
           &copy; Copyright {{ copyrightDate }}.
           <a
-              href="https://stoman.me"
+              href="#"
               target="__blank"
               class="text-secondary-dark dark:text-secondary-light font-medium uppercase hover:underline"
           >Hulks AI</a
           >
         </div>
         <a
-            href="#"
+            href="https://github.com/aihulks69/Speaker-dirization"
             target="__blank"
             class="text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400 cursor-pointer rounded-full bg-gray-200 dark:bg-ternary-dark hover:bg-gray-100 shadow-sm p-2"
         >

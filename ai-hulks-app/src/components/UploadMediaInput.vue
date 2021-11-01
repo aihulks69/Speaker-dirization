@@ -2,7 +2,7 @@
   <div
       class="bg-white w-max bg-white dark:bg-opacity-10 m-auto rounded-lg bg-opacity-60"  @dragover.prevent @drop.prevent>
     <div
-      class="p-4 space-y-4 relative border-4 border-dotted border-gray-300 rounded-lg"
+      class="p-4 space-y-4 border-4 border-dotted border-gray-300 rounded-lg"
       v-if="uploaded && files.length"
     >
       <ul
@@ -10,7 +10,7 @@
           :key="index"
       >
         <li
-            class="text-green-300 flex space-x-3 items-center"
+            class="text-green-300 flex space-x-3 items-center justify-center"
         >
           <span>
             {{file.name}}
@@ -28,6 +28,17 @@
           </a>
         </li>
       </ul>
+      <button
+          :disabled="'isProcessing'"
+          @click="process()"
+          class="mx-auto hover:shadow-lg process-btn text-white shadow-md focus:ring-2 focus:ring-red-300 focus:ring-offset-2 border border-transparent flex focus:outline-none hover:shadow-m items-center px-3 py-2 rounded-md text-base"
+      >
+        <svg v-if="isProcessing" class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Process
+      </button>
     </div>
     <div
         v-else
@@ -64,6 +75,12 @@
 <script>
 export default {
   name: "upload-media-input",
+  props: {
+    isProcessing: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: () => (
       {
         files: [],
@@ -107,11 +124,16 @@ export default {
     },
     initFiles() {
       this.files = [];
+    },
+    process() {
+      this.$emit('process-file', this.files[0]);
     }
   }
 }
 </script>
 
 <style scoped>
-
+.process-btn {
+  background: linear-gradient(135deg, #ef0a6c 0%, #9560c5 100%);
+}
 </style>

@@ -86,7 +86,7 @@
         >
           <a
               aria-label="github"
-              href="#"
+              href="https://github.com/aihulks69/Speaker-dirization"
               class="sm:hidden block text-left text-md font-medium bg-indigo-500 hover:bg-indigo-600 text-white shadow-sm rounded-md px-4 py-2 mt-2"
           >
             Github
@@ -103,7 +103,7 @@
         <a
             aria-label="github"
             class="bg-primary-light dark:bg-ternary-light text-gray-600 hover:text-indigo-500 dark:hover:text-indigo-400 flex items-center px-2 py-1 space-x-2 bg-gray-100 rounded-md"
-            href="#"
+            href="https://github.com/aihulks69/Speaker-dirization"
         >
           <svg
               class="h-5 w-5 mr-1"
