@@ -30,17 +30,18 @@
               Support any type of audio file
             </li>
             <li>
-              Support multi speaker dirization
+              Support multiple speakers dirization
             </li>
           </ul>
           <div
               class="flex justify-center mt-8 space-x-4"
           >
-            <button
+            <a
+                href="#demo"
                 class="hover:shadow-lg bg-primary-gradient text-white shadow-md focus:ring-2 focus:ring-primary focus:ring-offset-2 border border-transparent flex focus:outline-none hover:shadow-m items-center px-3 py-2 rounded-md text-base"
             >
               Try it now!
-            </button>
+            </a>
           </div>
         </div>
         <div
@@ -64,7 +65,7 @@
             class="mb-20 text-center"
         >
           <h1
-              class="mb-4 text-2xl font-medium text-center text-gray-900 dark:text-gray-300 sm:text-3xl title-font"
+              class="mb-4 font-medium text-center text-gray-900 dark:text-gray-300 text-2xl sm:text-3xl title-font"
           >
             How it works
           </h1>
@@ -73,13 +74,14 @@
     </section>
     <!-- Demo Section -->
     <section
+        id="demo"
         class="py-4 relative mx-auto space-y-4"
     >
       <div
         class="bg-red-5 space-y-4 md:items-center md:justify-between md:flex md:text-left text-center"
       >
         <p
-            class="flex-1 text-2xl text-gray-900 sm:pb-0 pb-4 md:text-xl dark:text-gray-300"
+            class="flex-1 text-gray-900 sm:pb-0 pb-4 md:text-xl dark:text-gray-300 text-2xl sm:text-3xl"
         >
           Separate different speakers in audio recording.
         </p>
@@ -97,7 +99,7 @@
         class="py-4 space-y-5 relative w-full px-4 mx-auto bg-indigo-50 bg-opacity-30 dark:bg-opacity-10"
     >
       <div
-          class="ml-auto mr-auto md:mx-auto sm:text-center space-y-4"
+          class="ml-auto mr-auto md:mx-auto sm:text-center space-y-8"
       >
         <h1
             class="text-2xl font-medium text-center text-gray-900 dark:text-gray-300 sm:text-3xl title-font"
@@ -111,119 +113,45 @@
         </p>
       </div>
       <div
-          class="grid gap-10 self-center row-gap-8 sm:row-gap-10 lg:max-w-screen-lg sm:grid-cols-2 lg:grid-cols-3"
+          class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-10 items-stretch"
       >
         <div
-            class="mt-8 flex items-center justify-center space-x-2"
+            v-for="team in teams"
+            :key="team.id"
+            class="mt-8 space-y-2 items-center sm:flex md:flex-row flex-col mx-auto"
+            style="width: 300px"
         >
           <img
-              src="../assets/images/default-user.png"
-              class="object-cover w-20 h-20 ml-4 rounded-full shadow"
+              v-if="team.image"
+              :src="team.image"
+              class="object-cover hover:shadow-xl w-20 h-20 rounded-full shadow sm:mx-0 mx-auto md:mr-3"
           />
+          <avatar v-else class="md:mr-3" size="80" :username="team.name"></avatar>
           <div
-              class="relative"
+              class="text-center md:text-left"
           >
             <p
-                class="text-lg font-bold text-gray-800 dark:text-ternary-light"
+                class="text-md font-semibold text-gray-800 dark:text-ternary-light"
             >
-              Debasish Dutta
+              {{team.name}}
             </p>
             <p
                 class="text-sm text-gray-600 dark:text-gray-400"
             >
-              Developer
+              {{team.role}}
             </p>
-          </div>
-        </div>
-        <div
-            class="flex items-center justify-center space-x-2"
-        >
-          <img
-              alt="avatar"
-              src="../assets/images/default-user.png"
-              class="object-cover w-20 h-20 ml-4 rounded-full shadow"
-          />
-          <div
-              class="relative"
-          >
-            <p
-                class="text-lg font-bold text-gray-800 dark:text-ternary-light"
-            >
-              Pragya Goyal
-            </p>
-            <p
-                class="text-sm text-gray-600 dark:text-gray-400">
-              Developer
-            </p>
-          </div>
-        </div>
-        <div
-            class="flex items-center justify-center space-x-2"
-        >
-          <img
-              alt="avatar"
-              src="../assets/images/default-user.png"
-              class="object-cover w-20 h-20 ml-4 rounded-full shadow"
-          />
-          <div
-              class="relative"
-          >
-            <p
-                class="text-lg font-bold text-gray-800 dark:text-ternary-light"
-            >
-              Ahmed Mansoura
-            </p>
-            <p
-                class="text-sm text-gray-600 dark:text-gray-400"
-            >
-              Developer
-            </p>
-          </div>
-        </div>
-        <div
-            class="flex items-center justify-center space-x-2"
-        >
-          <img
-              alt="avatar"
-              src="../assets/images/default-user.png"
-              class="object-cover w-20 h-20 ml-4 rounded-full shadow"
-          />
-          <div
-              class="relative"
-          >
-            <p
-                class="text-lg font-bold text-gray-800 dark:text-ternary-light"
-            >
-              Tanish Kumar
-            </p>
-            <p
-                class="text-sm text-gray-600 dark:text-gray-400"
-            >
-              Developer
-            </p>
-          </div>
-        </div>
-        <div
-            class="flex items-center justify-center space-x-2"
-        >
-          <img
-              alt="avatar"
-              src="../assets/images/default-user.png"
-              class="object-cover w-20 h-20 ml-4 rounded-full shadow"
-          />
-          <div
-              class="relative"
-          >
-            <p
-                class="text-lg font-bold text-gray-800 dark:text-ternary-light"
-            >
-              Jisha Jose
-            </p>
-            <p
-                class="text-sm text-gray-600 dark:text-gray-400"
-            >
-              Developer
-            </p>
+            <div class="flex mt-1 md:justify-start justify-center">
+              <a
+                  :href="team.linkedin"
+                  class="text-sm text-blue-400 hover:text-blue-500"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34" class="w-4 h-4">
+                  <g>
+                    <path d="M34,2.5v29A2.5,2.5,0,0,1,31.5,34H2.5A2.5,2.5,0,0,1,0,31.5V2.5A2.5,2.5,0,0,1,2.5,0h29A2.5,2.5,0,0,1,34,2.5ZM10,13H5V29h5Zm.45-5.5A2.88,2.88,0,0,0,7.59,4.6H7.5a2.9,2.9,0,0,0,0,5.8h0a2.88,2.88,0,0,0,2.95-2.81ZM29,19.28c0-4.81-3.06-6.68-6.1-6.68a5.7,5.7,0,0,0-5.06,2.58H17.7V13H13V29h5V20.49a3.32,3.32,0,0,1,3-3.58h.19c1.59,0,2.77,1,2.77,3.52V29h5Z" fill="currentColor"></path>
+                  </g>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -233,7 +161,7 @@
         class="py-4 flex flex-col items-center justify-center"
     >
       <h1
-          class="mb-3 text-2xl font-medium text-center text-gray-900 dark:text-gray-300 sm:text-3xl title-font"
+          class="mb-6 text-2xl font-medium text-center text-gray-900 dark:text-gray-300 sm:text-3xl title-font"
       >
         Built With
       </h1>
@@ -241,28 +169,21 @@
           class="flex gap-4 sm:gap-8"
       >
         <li
+            v-tooltip="{ content: tech.title, placement: 'bottom', classes: ['text-sm text-white bg-gray-900 p-1 z-10 bg-opacity-80 mt-1'] }"
+            v-for="tech in techs"
+            :key="tech.id"
             class="text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400 cursor-pointer rounded-lg bg-gray-50 dark:bg-ternary-dark hover:bg-gray-100 shadow-sm p-4"
         >
-          <img
-              class="w-10 h-8"
-              src="../assets/images/tailwind-logo.png"
-              alt="tailwind">
-        </li>
-        <li
-            class="text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400 cursor-pointer rounded-lg bg-gray-50 dark:bg-ternary-dark hover:bg-gray-100 shadow-sm p-4"
-        >
-          <img
-              class="w-10 h-8"
-              src="../assets/images/vuejs-logo.png"
-              alt="vuejs"
+          <a
+              :href="tech.url"
           >
+            <img
+                class="w-10 h-8"
+                :src="require('../assets/images/' + tech.image)"
+                :alt="tech.title">
+          </a>
         </li>
       </ul>
-      <modal name="result-modal">
-        <div class="flex items-center justify-center h-full">
-          some result...
-        </div>
-      </modal>
     </section>
   </div>
 </template>
@@ -281,7 +202,19 @@ export default {
       {
         uploaded: false,
         processing: false,
-        errorProcessing: false
+        errorProcessing: false,
+        teams: [
+          { id: 1, name: 'Pragya Goyal', role: '', image: '', linkedin: '#' },
+          { id: 2, name: 'Debasish Dutta', role: '', image: '', linkedin: '#' },
+          { id: 3, name: 'Jisha Jose', role: '', image: '', linkedin: '#' },
+          { id: 4, name: 'Tanish Kumar', role: '', image: '', linkedin: '#' },
+          { id: 5, name: 'Ahmed Mansoura', role: 'Software Engineer', image: 'https://lh3.googleusercontent.com/ogw/ADea4I4_kYk5pTrBeB65pM8VmTmFYOn7dHBtNXaWYXZKAw=s83-c-mo', linkedin: 'https://www.linkedin.com/in/ahmed-m-649526176/' },
+        ],
+        techs: [
+          { id: 1, title: 'Tailwind', image: 'tailwind-logo.png', url: 'https://tailwindcss.com/'},
+          { id: 2, title: 'VueJs', image: 'vuejs-logo.png', url: 'https://vuejs.org/'},
+          { id: 3, title: 'Flask', image: 'flask-logo.jpg', url: 'https://flask.palletsprojects.com/'},
+        ]
       }
   ),
   mounted() {
