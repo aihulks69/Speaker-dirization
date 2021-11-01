@@ -29,7 +29,7 @@
         </li>
       </ul>
       <button
-          :disabled="'isProcessing'"
+          :disabled="isProcessing"
           @click="process()"
           class="mx-auto hover:shadow-lg process-btn text-white shadow-md focus:ring-2 focus:ring-red-300 focus:ring-offset-2 border border-transparent flex focus:outline-none hover:shadow-m items-center px-3 py-2 rounded-md text-base"
       >
@@ -124,6 +124,7 @@ export default {
     },
     initFiles() {
       this.files = [];
+      this.$emit('rest');
     },
     process() {
       this.$emit('process-file', this.files[0]);

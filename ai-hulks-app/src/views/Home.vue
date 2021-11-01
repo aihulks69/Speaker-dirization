@@ -87,6 +87,7 @@
             class="flex-1"
             :is-processing="processing"
             @upload-file="onUpload"
+            @reset="onReset"
             @process-file="onProcess"
         />
       </div>
@@ -257,6 +258,11 @@
           >
         </li>
       </ul>
+      <modal name="result-modal">
+        <div class="flex items-center justify-center h-full">
+          some result...
+        </div>
+      </modal>
     </section>
   </div>
 </template>
@@ -274,7 +280,7 @@ export default {
   data:() => (
       {
         uploaded: false,
-        processing: true,
+        processing: false,
         errorProcessing: false
       }
   ),
@@ -284,6 +290,9 @@ export default {
     onUpload() {
       this.uploaded = true;
     },
+    onReset() {
+      this.processing = false;
+    },
     onProcess(file) {
       this.processing = true;
       console.log('here', file)
@@ -291,10 +300,12 @@ export default {
       formData.append("image", file);
       endpoint.uploadAudio(formData)
           .then(response => {
+            this.$modal.show('result-modal')
             console.log(response)
           })
           .catch(error => {
             console.log(error);
+            this.$notify({ type: 'error', text: 'Oops something went wrong!' })
             this.errorProcessing = true;
           })
           .finally(() => this.processing = false)
