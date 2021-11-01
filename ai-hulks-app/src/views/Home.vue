@@ -1,6 +1,6 @@
 <template>
   <div
-      class="container mx-auto relative z-10 space-y-12">
+      class="container mx-auto relative z-10 space-y-20">
     <!-- Banner -->
     <section
         class="text-gray-600 body-font"
@@ -56,26 +56,52 @@
     </section>
     <!-- How it works Section -->
     <section
-        class="py-4 text-gray-900 dark:text-gray-300 body-font bg-indigo-50 bg-opacity-30 dark:bg-opacity-10"
+        class="text-gray-900"
     >
       <div
-          class="container px-5 pb-24 mx-auto"
+          class="container px-5 mx-auto"
       >
         <div
-            class="mb-20 text-center"
+            class="mt-4 text-center"
         >
           <h1
-              class="mb-4 font-medium text-center text-gray-900 dark:text-gray-300 text-2xl sm:text-3xl title-font"
+              class="mb-8 font-medium text-center text-gray-900 dark:text-gray-300 text-2xl sm:text-3xl title-font"
           >
-            How it works
+            How the magic works
           </h1>
+          <div class="grid lg:grid-cols-3 grid-cols-1 lg:gap-x-10 gap-y-10 items-stretch">
+            <div class="space-y-5 rounded-md py-10 flex-col justify-center text-center dark:text-gray-300 body-font bg-indigo-50 bg-opacity-30 dark:bg-opacity-10">
+              <div class="mx-auto h-14 w-14 flex items-center justify-center text-center rounded-full border-4 border-indigo-500 text-indigo-500" >
+                <span class="font-semibold text-xl">1</span>
+              </div>
+              <p class="font-semibold text-gray-600">
+                Upload your audio file.
+              </p>
+            </div>
+            <div class="space-y-5 rounded-md py-10 flex-col justify-center text-center dark:text-gray-300 body-font bg-indigo-50 bg-opacity-30 dark:bg-opacity-10">
+              <div class="mx-auto h-14 w-14 flex items-center justify-center text-center rounded-full border-4 border-indigo-500 text-indigo-500" >
+                <span class="font-semibold text-xl">2</span>
+              </div>
+              <p class="font-semibold text-gray-600">
+                Processing the audio.
+              </p>
+            </div>
+            <div class="space-y-5 rounded-md py-10 flex-col justify-center text-center dark:text-gray-300 body-font bg-indigo-50 bg-opacity-30 dark:bg-opacity-10">
+              <div class="mx-auto h-14 w-14 flex items-center justify-center text-center rounded-full border-4 border-indigo-500 text-indigo-500" >
+                <span class="font-semibold text-xl">3</span>
+              </div>
+              <p class="font-semibold text-gray-600">
+                Displaying the result.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
     <!-- Demo Section -->
     <section
         id="demo"
-        class="py-4 relative mx-auto space-y-4"
+        class="relative mx-auto space-y-4"
     >
       <div
         class="bg-red-5 space-y-4 md:items-center md:justify-between md:flex md:text-left text-center"
@@ -96,7 +122,7 @@
     </section>
     <!-- Team Section -->
     <section
-        class="py-4 space-y-5 relative w-full px-4 mx-auto bg-indigo-50 bg-opacity-30 dark:bg-opacity-10"
+        class="space-y-5 py-4 relative w-full px-4 mx-auto bg-indigo-50 bg-opacity-30 dark:bg-opacity-10"
     >
       <div
           class="ml-auto mr-auto md:mx-auto sm:text-center space-y-8"
@@ -126,7 +152,7 @@
               :src="team.image"
               class="object-cover hover:shadow-xl w-20 h-20 rounded-full shadow sm:mx-0 mx-auto md:mr-3"
           />
-          <avatar v-else class="md:mr-3" size="80" :username="team.name"></avatar>
+          <avatar v-else class="md:mr-3" :size='80' :username="team.name"></avatar>
           <div
               class="text-center md:text-left"
           >
@@ -158,7 +184,7 @@
     </section>
     <!-- Tech -->
     <section
-        class="py-4 flex flex-col items-center justify-center"
+        class="flex flex-col items-center justify-center"
     >
       <h1
           class="mb-6 text-2xl font-medium text-center text-gray-900 dark:text-gray-300 sm:text-3xl title-font"
@@ -204,10 +230,10 @@ export default {
         processing: false,
         errorProcessing: false,
         teams: [
-          { id: 1, name: 'Pragya Goyal', role: '', image: '', linkedin: '#' },
-          { id: 2, name: 'Debasish Dutta', role: '', image: '', linkedin: '#' },
+          { id: 1, name: 'Pragya Goyal', role: 'Software Developer at Tesco', image: 'https://media-exp1.licdn.com/dms/image/C4D03AQEW9radKQ6q1g/profile-displayphoto-shrink_800_800/0/1592731076134?e=1641427200&v=beta&t=Ba6Nz_2YrVgZvyLswmMxaLIITh5bhR49XofNphGwoDg', linkedin: 'https://www.linkedin.com/in/pragya-goyal/' },
+          { id: 2, name: 'Debasish Dutta', role: 'Data Scientist', image: 'https://ca.slack-edge.com/T02B74N1SLQ-U02JMM5MYEL-663179efaebd-512', linkedin: 'https://www.linkedin.com/in/ddmasterdon/' },
           { id: 3, name: 'Jisha Jose', role: '', image: '', linkedin: '#' },
-          { id: 4, name: 'Tanish Kumar', role: '', image: '', linkedin: '#' },
+          { id: 4, name: 'Tanish Kumar', role: 'Python developer', image: 'https://media-exp1.licdn.com/dms/image/C4D03AQHs9_UAX1hjWw/profile-displayphoto-shrink_800_800/0/1619359206579?e=1641427200&v=beta&t=PO2JP458QzHhdx-kiJTY8-gPjJOI7WtEiMFf9je1bmo', linkedin: 'https://www.linkedin.com/in/tanish-kumar-3082b81b5' },
           { id: 5, name: 'Ahmed Mansoura', role: 'Software Engineer', image: 'https://lh3.googleusercontent.com/ogw/ADea4I4_kYk5pTrBeB65pM8VmTmFYOn7dHBtNXaWYXZKAw=s83-c-mo', linkedin: 'https://www.linkedin.com/in/ahmed-m-649526176/' },
         ],
         techs: [
