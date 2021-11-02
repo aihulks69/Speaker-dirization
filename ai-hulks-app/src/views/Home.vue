@@ -256,13 +256,14 @@ export default {
     onProcess(file) {
       this.processing = true;
       let formData = new FormData();
-      formData.append("audio", file);
+      formData.append("file", file);
       endpoint.uploadAudio(formData)
           .then(response => {
-            console.log(response)
+            const { data } = response;
+            console.log(data)
             this.$modal.show('dialog', {
               title: 'Congratulations! Your audio file has been successfully processed.',
-              text: `${response} speaker(s) detected.`,
+              text: `${data} speaker(s) detected.`,
               buttons: [
                 {
                   title: 'OK',
