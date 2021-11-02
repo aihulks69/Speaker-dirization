@@ -211,6 +211,7 @@
         </li>
       </ul>
     </section>
+    <v-dialog />
   </div>
 </template>
 
@@ -254,13 +255,23 @@ export default {
     },
     onProcess(file) {
       this.processing = true;
-      console.log('here', file)
       let formData = new FormData();
       formData.append("image", file);
       endpoint.uploadAudio(formData)
           .then(response => {
-            this.$modal.show('result-modal')
             console.log(response)
+            this.$modal.show('dialog', {
+              title: 'Congratulations! Your audio file has been successfully processed.',
+              text: `${response} speaker(s) detected.`,
+              buttons: [
+                {
+                  title: 'OK',
+                  handler: () => {
+                    this.$modal.hide('dialog')
+                  }
+                },
+              ]
+            })
           })
           .catch(error => {
             console.log(error);

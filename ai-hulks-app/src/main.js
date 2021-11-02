@@ -13,7 +13,7 @@ import Avatar from 'vue-avatar'
 Vue.use(BackToTop)
 Vue.use(Notifications)
 Vue.config.productionTip = false
-Vue.use(VModal, { dynamicDefault: { draggable: false, resizable: false } })
+Vue.use(VModal, { dialog: true })
 
 Vue.directive('tooltip', VTooltip)
 Vue.directive('close-popover', VClosePopover)
