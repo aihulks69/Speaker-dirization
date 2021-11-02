@@ -256,7 +256,7 @@ export default {
     onProcess(file) {
       this.processing = true;
       let formData = new FormData();
-      formData.append("image", file);
+      formData.append("audio", file);
       endpoint.uploadAudio(formData)
           .then(response => {
             console.log(response)
